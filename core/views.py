@@ -151,6 +151,8 @@ def add_producto_peluqueria(request):
 def tienda(request):
     alimentos = Alimento.objects.all()
     accesorios = Accesorio.objects.all()
+    productos_limpieza = Producto_limpieza.objects.all()
+    productos_peluqueria = Producto_peluqueria.objects.all()
     return render(request, "core/tienda.html",{'alimentos':alimentos,'accesorios':accesorios,'productos_limpieza':productos_limpieza,'productos_peluqueria':productos_peluqueria})
 
 #Funciones modificar y eliminar 
