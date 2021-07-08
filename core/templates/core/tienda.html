@@ -1,0 +1,242 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Tienda{% endblock %}
+
+{% block content %}
+    <!--Encabezado con reloj-->
+    <div class="container" style="border-bottom: solid black 3px;">
+        <section >
+            <div class="row">
+                <div class="col" style="background-color: #7c826e;">
+                    <div class="col">
+                        <div id="clockdate">
+                            <div class="clockdate-wrapper">
+                                <div id="clock"></div>
+                                <div id="date"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <button style="border-color: rgb(245, 245, 219) ;" class="btn btn-dark" type="button" onclick="apagarLuzPerro()">Modo Obscuro</button> 
+                        <button style="border-color: #343a40; background-color: rgb(245, 245, 219); color: #343a40;" class="btn btn-dark" type="button" onclick="encenderLuzPerro()">Modo Claro</button> 
+                    </div>
+                        
+                </div>
+                            
+            </div>
+        </section>
+    </div>
+    <!--Titulo pagina-->
+    <div class="container mt-4 mb-4">
+        <section id="titulopaginaperro" style="background-color:#a1ab89;" >
+            <hr>
+            <h1 style="text-align: center;">Tienda Petcare</h1>
+            <hr>
+        </section>
+    </div>
+
+    <!--Tablas-->
+    <div class="container justify-content-center">
+        <div class="row p-1 mb-4" style="background-color: #d4d4d4; color: black; border: 1px solid black;">
+            <div class="col">
+                <h1>Alimentos</h1>
+            </div>
+            <div class="col" style="text-align: right; padding: 1px; margin-top: 12px; margin-right: 5px;">
+                <a class="card-link" href="{% url 'add_producto' %}" target="_self"><button style="border-color: rgb(245, 245, 219) ;" class="btn btn-success" type="button">Agregar</button></a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr style="background-color: #7c826e;">
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Valor unitario $</th>
+                            <th>Stock</th>
+                            <th>Imagen</th>
+                            <th>Marca</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #e7eea5; color: black;">
+                        {% for alimentos in alimentos %}
+                            <tr>
+                                <td>{{alimentos.idAlimento}}</td>
+                                <td>{{alimentos.descripcion}}</td>
+                                <td>{{alimentos.precio}}</td>
+                                <td>{{alimentos.cantidad}}</td>
+                                {% if alimentos.imagen %}
+                                    <td><img class="img-productos" src="{{alimentos.imagen.url}}" alt="" width="100px" height="100px"></td>
+                                {% else %}
+                                    <td><img class="img-productos" src="{% static 'core/img/imagenfalse.jpg' %}" alt="No tiene imagen" width="100px" height="100px"></td>
+                                {% endif %}
+                                <td>{{alimentos.marca}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'update_producto_alimento' alimentos.idAlimento %}">Modificar</a>
+                                    <a class="btn btn-danger" href="{% url 'product_delete_alimento' alimentos.idAlimento %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--Tablas-->
+    <div class="container justify-content-center">
+        <div class="row p-1 mb-4" style="background-color: #d4d4d4; color: black; border: 1px solid black;">
+            <div class="col">
+                <h1>Accesorios</h1>
+            </div>
+            <div class="col" style="text-align: right; padding: 1px; margin-top: 12px; margin-right: 5px;">
+                <a class="card-link" href="{% url 'add_producto_acceosorios' %}" target="_self"><button style="border-color: rgb(245, 245, 219) ;" class="btn btn-success" type="button">Agregar</button></a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr style="background-color: #7c826e;">
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Valor unitario $</th>
+                            <th>Stock</th>
+                            <th>Imagen</th>
+                            <th>Marca</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #e7eea5; color: black;">
+                        {% for accesorios in accesorios %}
+                            <tr>
+                                <td>{{accesorios.idAccesorio}}</td>
+                                <td>{{accesorios.descripcion}}</td>
+                                <td>{{accesorios.precio}}</td>
+                                <td>{{accesorios.cantidad}}</td>
+                                {% if accesorios.imagen %}
+                                    <td><img class="img-productos" src="{{accesorios.imagen.url}}" alt="" width="100px" height="100px"></td>
+                                {% else %}
+                                    <td><img class="img-productos" src="{% static 'core/img/imagenfalse.jpg' %}" alt="No tiene imagen" width="100px" height="100px"></td>
+                                {% endif %}
+                                <td>{{accesorios.marca}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'update_producto_accesorio' accesorios.idAccesorio %}">Modificar</a>
+                                    <a class="btn btn-danger" href="{% url 'product_delete_accesorio' accesorios.idAccesorio %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--Tabla Productos_limpieza-->
+    <div class="container justify-content-center">
+        <div class="row p-1 mb-4" style="background-color: #d4d4d4; color: black; border: 1px solid black;">
+            <div class="col">
+                <h1>Productos Limpieza</h1>
+            </div>
+            <div class="col" style="text-align: right; padding: 1px; margin-top: 12px; margin-right: 5px;">
+                <a class="card-link" href="{% url 'add_producto_limpieza' %}" target="_self"><button style="border-color: rgb(245, 245, 219) ;" class="btn btn-success" type="button">Agregar</button></a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr style="background-color: #7c826e;">
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Valor unitario $</th>
+                            <th>Stock</th>
+                            <th>Imagen</th>
+                            <th>Marca</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #e7eea5; color: black;">
+                        {% for productos_limpieza in productos_limpieza %}
+                            <tr>
+                                <td>{{productos_limpieza.idProducto_limpieza}}</td>
+                                <td>{{productos_limpieza.descripcion}}</td>
+                                <td>{{productos_limpieza.precio}}</td>
+                                <td>{{productos_limpieza.cantidad}}</td>
+                                {% if productos_limpieza.imagen %}
+                                    <td><img class="img-productos" src="{{productos_limpieza.imagen.url}}" alt="" width="100px" height="100px"></td>
+                                {% else %}
+                                    <td><img class="img-productos" src="{% static 'core/img/imagenfalse.jpeg' %}" alt="No tiene imagen" width="100px" height="100px"></td>
+                                {% endif %}
+                                <td>{{productos_limpieza.marca}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'update_producto_limpieza' productos_limpieza.idProducto_limpieza %}">Modificar</a>
+                                    <a class="btn btn-danger" href="{% url 'product_delete_limpieza' productos_limpieza.idProducto_limpieza %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+    <!--Tabla Productos_peluqueria-->
+    <div class="container justify-content-center">
+        <div class="row p-1 mb-4" style="background-color: #d4d4d4; color: black; border: 1px solid black;">
+            <div class="col">
+                <h1>Productos Peluqueria</h1>
+            </div>
+            <div class="col" style="text-align: right; padding: 1px; margin-top: 12px; margin-right: 5px;">
+                <a class="card-link" href="{% url 'add_producto_peluqueria' %}" target="_self"><button style="border-color: rgb(245, 245, 219) ;" class="btn btn-success" type="button">Agregar</button></a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table table-dark table-striped table-hover">
+                    <thead>
+                        <tr style="background-color: #7c826e;">
+                            <th>ID</th>
+                            <th>Descripcion</th>
+                            <th>Valor unitario $</th>
+                            <th>Stock</th>
+                            <th>Imagen</th>
+                            <th>Marca</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background-color: #e7eea5; color: black;">
+                        {% for productos_peluqueria in productos_peluqueria %}
+                            <tr>
+                                <td>{{productos_peluqueria.idProducto_peluqueria}}</td>
+                                <td>{{productos_peluqueria.descripcion}}</td>
+                                <td>{{productos_peluqueria.precio}}</td>
+                                <td>{{productos_peluqueria.cantidad}}</td>
+                                {% if productos_peluqueria.imagen %}
+                                    <td><img class="img-productos" src="{{productos_peluqueria.imagen.url}}" alt="" width="100px" height="100px"></td>
+                                {% else %}
+                                    <td><img class="img-productos" src="{% static 'core/img/imagenfalse.jpeg' %}" alt="No tiene imagen" width="100px" height="100px"></td>
+                                {% endif %}
+                                <td>{{productos_peluqueria.marca}}</td>
+                                <td>
+                                    <a class="btn btn-primary" href="{% url 'update_producto_peluqueria' productos_peluqueria.idProducto_peluqueria %}">Modificar</a>
+                                    <a class="btn btn-danger" href="{% url 'product_delete_peluqueria' productos_peluqueria.idProducto_peluqueria %}">Eliminar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+{% endblock %}

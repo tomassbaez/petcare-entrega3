@@ -1,0 +1,138 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Gatos{% endblock %}
+
+{% block content %}
+    <!--encabezado con reloj + botones-->
+    <div class="container" style="border-bottom: solid black 3px;">
+        <section >
+            <div class="row">
+                <div class="col" style="background-color: #7c826e;">
+                    <div class="col">
+                        <div id="clockdate">
+                            <div class="clockdate-wrapper">
+                            <div id="clock"></div>
+                            <div id="date"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <button style="border-color: rgb(245, 245, 219) ;" class="btn btn-dark" type="button" onclick="apagarLuzVeterinario()">Modo Obscuro</button> 
+                        <button style="border-color: #343a40; background-color: rgb(245, 245, 219); color: #343a40;" class="btn btn-dark" type="button" onclick="encenderLuzVeterinario()">Modo Claro</button> 
+                    </div>
+                    
+                </div>
+                        
+            </div>
+        </section>
+    </div>
+
+    <!--card con veterinarios-->
+    <div class="container">
+        <hr>
+        <h1 id="tituloveterinario" style="text-align: center; ">Veterinarios Encargados</h1>
+        <hr>
+        <div class="row mt-4 mb-4">
+            <div class="col-md-3 mt-4 mb-4">
+                <div class="card bg-dark text-white">
+                    <img id="veterinario1imagen" class="card-img-top"  alt="veterinario1" height="250px">
+                    <div class="card-header" style="background-color: #3f3f3f; text-align: center;">
+                        <h4 id="veterinario1nombre" class="card-title"></h4>
+                    </div> 
+                    <div class="card-body" style="background-color: #d4d4d4; color: black;" >
+                        <p id="veterinario1email" class="card-text" style="height: 30px; font-size: 13px;"></p>
+                        <p id="veterinario1edad" class="card-text">32</p>  
+                    </div>
+                    <div class="card-footer" style="color: black; text-align: center;">
+                        <p>Valor por consulta: $14.000 </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mt-4 mb-4">
+                <div class="card bg-dark text-white">
+                    <img id="veterinario2imagen" class="card-img-top" alt="veterinario2"  height="250px"> 
+                    <div class="card-header" style="background-color: #3f3f3f; text-align: center;">
+                        <h4 id="veterinario2nombre" class="card-title"></h4>
+                    </div>   
+                    <div class="card-body" style="background-color: #d4d4d4; color: black; ">
+                        <p id="veterinario2email" class="card-text" style="height: 30px; font-size: 13px;"></p>
+                        <p id="veterinario2edad" class="card-text">30</p>
+                    </div>
+                    <div class="card-footer" style="color: black; text-align: center;">
+                        <p>Valor por consulta: $17.000 </p>
+                    </div>          
+                </div>
+            </div>
+            <div class="col-md-3 mt-4 mb-4">
+                <div class="card bg-dark text-white">
+                    <img id="veterinario3imagen" class="card-img-top"  alt="veterinario3" height="250px">  
+                    <div class="card-header" style="background-color: #3f3f3f; text-align: center;">
+                        <h4 id="veterinario3nombre" class="card-title"></h4>
+                    </div>  
+                    <div class="card-body" style="background-color: #d4d4d4 ; color: black;">
+                        
+                        <p id="veterinario3email" class="card-text" style="height: 30px; font-size: 13px;"></p>
+                        <p id="veterinario3edad" class="card-text">29</p>
+                    </div>
+                    <div class="card-footer" style="color: black; text-align: center;">
+                        <p>Valor por consulta: $15.000 </p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-3 mt-4 mb-4">
+                <div class="card bg-dark text-white">
+                    <img id="veterinario4imagen" class="card-img-top"  alt="veterinario4" height="250px">  
+                    <div class="card-header" style="background-color: #3f3f3f; text-align: center;">
+                        <h4 id="veterinario4nombre" class="card-title"></h4>
+                    </div>   
+                    <div class="card-body" style="background-color: #d4d4d4; color: black;">
+                        
+                        <p id="veterinario4email" class="card-text" style="height: 30px; font-size: 13px;"></p>
+                        <p id="veterinario4edad" class="card-text">34</p>
+                    </div>
+                    <div class="card-footer" style="color: black; text-align: center;">
+                        <p>Valor por consulta: $20.000 </p>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>       
+    </div>
+
+
+    <!--conversor-->
+    <div class="container mb-4 mt-4">
+        <div  class="card bg-dark">
+            <div class="card-header" style="background-color: #3f3f3f; color: white; border: solid #3f3f3f;">
+                <h3 class="card-title" style="text-align: center;">Conversor de Divisas Cl / Euro / Dólar</h3>
+            </div>
+            <div class="card-body" style="background-color: #d4d4d4;">
+                <div class="row">
+                    <div class="col-10">
+                        <input  type="number" class="form-control" id="cl" name="cl" placeholder="0">
+                    </div>
+                    <div class="col-2">
+                        <button style="background-color: #a1ab89; color: black; font-weight: 600;" class="btn" type="button" onclick="convertir()">convertir</button>
+                    </div>    
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-5">
+                        <p class="card-text" id="valorEuro">Monto en Euros:</p>
+                    </div>
+                    <div class="col-5">
+                        <p class="card-text" id="valorDolar">Monto en Dolares:</p>
+                    </div>
+                </div>   
+
+            </div>
+            
+        </div>
+        
+    </div>
+    <br>
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Gatos{% endblock %}
+
+{% block content %}
+    <!--encabezado con reloj + botones-->
+    <div class="container" style="border-bottom: solid black 3px;">
+        <section >
+            <div class="row">
+                <div class="col" style="background-color: #7c826e;">
+                    <div class="col">
+                        <div id="clockdate">
+                            <div class="clockdate-wrapper">
+                            <div id="clock"></div>
+                            <div id="date"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <button style="border-color: rgb(245, 245, 219) ;" class="btn btn-dark" type="button" onclick="apagarLuz()">Modo Obscuro</button> 
+                        <button style="border-color: #343a40; background-color: rgb(245, 245, 219); color: #343a40;" class="btn btn-dark" type="button" onclick="encenderLuz()">Modo Claro</button> 
+                    </div>
+                    
+                </div>
+                        
+            </div>
+        </section>
+    </div>
+
+    <!--Barra-->
+    <br>
+    <br>
+    <div class="container">
+        <img src="{% static 'core/img/linea.png' %}" alt="linea divisora" width="1100px" height="30px">
+    </div>
+    <!--cards-->
+    <div class="container">
+        <div class="row mt-4 mb-4 ">
+            <div class="col-md-6 mt-4 mb-4 ">
+                <div class="card bg-dark text-white">
+                    <img class="card-img-top" src="{% static 'core/img/JoseMallea.jpg' %}" alt="imagen_perro_hombre" height="600px">
+                    <div class="card-body" style="background-color: #b8b8b8; color: black;">
+                        <h4 class="card-title">José Luis Mallea Basualto</h4>
+                        <p class="card-text">23 años</p>                  
+                        <p class="card-text">Estudiante de la carrera Analista programador computacional</p>   
+                    </div>
+                    <div class="card-footer" style="text-align: center; background-color: #5c5c5c">
+                        <a href="https://www.instagram.com/negro_jose_mallea/?hl=es-la" target="_blank" style="background-color: rgb(255, 255, 255); color: black;" class="btn btn-secondary btn-lg btn-block">Ver más...</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mt-4 mb-4 ">
+                <div class="card bg-dark text-white">
+                    <img class="card-img-top" src="{% static 'core/img/TomasBaez.jpg' %}" alt="imagen_mascotas" height="600px">   
+                    <div class="card-body" style="background-color: #b8b8b8; color: black;">
+                        <h4 class="card-title">Tomás Andres Báez Avila</h4>
+                        <p class="card-text">20 años</p>                  
+                        <p class="card-text">Estudiante de la carrera Analista programador computacional</p> 
+                    </div>
+                    <div class="card-footer" style="text-align: center; background-color: #5c5c5c">
+                        <a href="https://www.instagram.com/tomasbaezz/?hl=es-la" target="_blank" style="background-color: rgb(255, 255, 255); color: black;" class="btn btn-secondary btn-lg btn-block" >Ver más...</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>       
+    </div>
+
+    <!--Barra-->
+    <div class="container">
+        <img src="{% static 'core/img/linea.png' %}" alt="linea divisora" width="1100px" height="30px">
+    </div>
+    <br>
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Agregar productos Limpieza{% endblock %}
+
+{% block content %}
+    
+    <!--Encabezado con reloj-->
+    <div class="container" style="border-bottom: solid black 3px;">
+        <section >
+            <div class="row">
+                <div class="col" style="background-color: #7c826e;">
+                    <div class="col">
+                        <div id="clockdate">
+                            <div class="clockdate-wrapper">
+                                <div id="clock"></div>
+                                <div id="date"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align: right;">
+                        <button style="border-color: rgb(245, 245, 219) ;" class="btn btn-dark" type="button" onclick="apagarLuzPerro()">Modo Obscuro</button> 
+                        <button style="border-color: #343a40; background-color: rgb(245, 245, 219); color: #343a40;" class="btn btn-dark" type="button" onclick="encenderLuzPerro()">Modo Claro</button> 
+                    </div>
+                        
+                </div>
+                            
+            </div>
+        </section>
+    </div>
+    
+    
+    <!--Creacion de formulario para agregar productos-->
+    <div class="container">
+        <div class="row rounded p-5 mt-4 mb-4" style="background-color:#a1ab89;">
+            <h1>Registro nuevos  Productos de Limpieza</h1>
+        </div>
+        <div class="row">
+            {% if 'ok' in request.GET %}
+                <div class="alert alert-success">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Aprovado!</strong> El producto se ha agregado de forma exitosa.
+                </div>
+            {% endif %}
+            {% if 'fail' in request.GET %}
+                <div class="alert alert-danger">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Alerta!</strong> No se ha podido agregar el producto de forma exitosa.
+                </div>
+            {% endif %}
+        </div>
+        <!-- Formulario de contacto -->                            
+        <div class="row">
+            <form action="" method="POST" id="formulario" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Código Limpieza *</label>
+                    <div class="input-group">
+                        {{form.idProducto_limpieza}}
+                    </div>                
+                    {{form.idProducto_limpieza.errors}}
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Descripción *</label>
+                    <div class="input-group">
+                        {{form.descripcion}}
+                    </div>                
+                    {{form.descripcion.errors}}
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Precio Unitario $ *</label>
+                    <div class="input-group">
+                        {{form.precio}}
+                    </div>                
+                    {{form.precio.errors}}
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Cantidad *</label>
+                    <div class="input-group">
+                        {{form.cantidad}}
+                    </div>                
+                    {{form.cantidad.errors}}
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Imagen</label>
+                    {{form.imagen}}
+                </div>
+                <div class="form-group mb-3">
+                    <label class="fw-bold">Marca *</label>
+                    <div class="input-group">
+                        {{form.marca}}
+                    </div>                
+                    {{form.marca.errors}}
+                </div>
+                <div class="text-center mt-4">
+                    <input type="submit" class="btn btn-success btn-block py-2" id="enviar" value="Enviar">
+                    <input type="reset" class="btn btn-danger btn-block py-2" id="limpiar" value="Limpiar">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
